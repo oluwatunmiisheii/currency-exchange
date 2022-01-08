@@ -1,4 +1,7 @@
 import React from 'react';
+import styles from './App.module.scss';
+import CurrencyConverter from './containers/currencyConverter/CurrencyConverter';
+
 
 interface AppProps {
   
@@ -6,9 +9,9 @@ interface AppProps {
  
 const App: React.FC<AppProps> = () => {
   return (  
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className={styles["main-wrapper"]}>
+      <CurrencyConverter />
+    </main>
   )
 }
  
