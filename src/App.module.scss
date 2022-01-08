@@ -1,0 +1,6 @@
+.main-wrapper {
+  @apply min-h-screen;
+  @apply flex  justify-center flex-col;
+  @apply py-12 px-4 sm:px-6 lg:px-8;
+  @apply max-w-2xl w-full mx-auto overflow-hidden;
+}

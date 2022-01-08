@@ -1,0 +1,9 @@
+.revolute-input {
+  @apply block w-full pl-0 bg-transparent border-0 pt-0 border-b border-transparent;
+  @apply focus:border-indigo-600 focus:ring-0 text-3xl font-medium text-gray-900;
+  @apply placeholder-gray-600 focus:placeholder-gray-400 transition duration-150 ease-in-out
+}
+
+.revolute-input__label {
+  @apply block text-sm text-gray-500 mb-3;
+}
