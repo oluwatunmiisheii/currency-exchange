@@ -1,28 +1,23 @@
 import React from 'react';
 import styles from './App.module.scss';
 import CurrencyExchange from './containers/currencyExchange/CurrencyExchange';
-// import CurrencyExchangeService from './services/CurrencyExchange.service';
-
-
+import { QueryClientProvider, QueryClient } from 'react-query';
 interface AppProps {
-  
+
 }
- 
+
+// Create a client
+const queryClient = new QueryClient()
+
 const App: React.FC<AppProps> = () => {
-  // const processGetLatestRates = async () => {
-  //   const response = await CurrencyExchangeService.getLatestRates();
-  //   console.log(response);
-  // }
-
-  // React.useEffect(() => {
-  //   processGetLatestRates();
-  // })
-
-  return (  
-    <main className={styles["main-wrapper"]}>
-      <CurrencyExchange />
-    </main>
+   return (
+    // Provide the client to your App
+    <QueryClientProvider client={queryClient}>
+      <main className={styles["main-wrapper"]}>
+        <CurrencyExchange />
+      </main>
+    </QueryClientProvider>
   )
 }
- 
+
 export default App;

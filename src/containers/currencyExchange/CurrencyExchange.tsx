@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { ArrowDownIcon, RefreshIcon } from '@heroicons/react/outline'
+import { useQuery } from 'react-query'
 import Panel from '../../components/panel/Panel';
 import CurrencyList from '../../components/currencyList/CurrencyList';
+import CurrencyExchangeService from '../../services/CurrencyExchange.service';
 
 interface ICurrencyConverter {
 
@@ -24,6 +26,10 @@ interface IAmount {
 }
 
 const CurrencyConverter: React.FC<ICurrencyConverter> = () => {
+  // Queries
+  const query = useQuery('fetchRates', CurrencyExchangeService.getLatestRates);
+  console.log("🚀 ~ file: CurrencyExchange.tsx ~ line 31 ~ query", query)
+
   const [errors, setErrors] = useState<IErrors>({
     currencyToConvertTo: null,
     currencyToConvertFrom: null,
