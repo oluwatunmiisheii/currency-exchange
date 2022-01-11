@@ -1,6 +1,5 @@
 import React from 'react'
 import { IInput } from '../../../models/Input.model';
-import ErrorMessage from '../errorMessage/ErrorMessage';
 import styles from './Input.module.scss';
 
 const Input: React.FC<IInput> = (props) => {
@@ -20,9 +19,11 @@ const Input: React.FC<IInput> = (props) => {
           className={styles["revolute-input"]}
           placeholder={props.placeholder}
           required={props.required}
+          onChange={props.onChange}
+          pattern={props.pattern}
+          value={props.value}
         />
       </div>
-      <ErrorMessage message='Hello' />
     </>
   );
 }
