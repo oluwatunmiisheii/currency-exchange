@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover'
 import { ChevronDownIcon } from '@heroicons/react/solid';
-
+import { formatCurrency } from '../../../util/FormatCurrency';
 interface IProps {
   children: React.ReactElement;
   currency: string;
   balance: number;
-  symbol: string;
 }
 
 const CustomPopover: React.FC<IProps> = (props) => {
@@ -27,8 +26,8 @@ const CustomPopover: React.FC<IProps> = (props) => {
           <div className="font-bold text-lg">
             {props.currency}
           </div>
-          <div className="text-gray-500">
-            Balance: {props.symbol}{props.balance}
+          <div className="text-gray-500">  
+            Balance: {formatCurrency(props.balance, props.currency)}  
           </div>
         </div>
         <ChevronDownIcon className="h-5 w-5 text-gray-500" />
