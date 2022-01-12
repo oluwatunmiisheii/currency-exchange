@@ -8,7 +8,7 @@ interface PanelProps extends IInput {
   popoverContent: React.ReactElement,
   currency: string,
   balance: number,
-  symbol: string,
+  errorMessage?: string,
 }
 
 const Panel: React.FC<PanelProps> = (props) => {
@@ -24,20 +24,20 @@ const Panel: React.FC<PanelProps> = (props) => {
             name={props.name}
             placeholder={props.placeholder}
             disabled={props.disabled}
-            onChange={props.onChange}
+            onAmountChange={props.onAmountChange}
             value={props.value}
+            errorMessage={props.errorMessage}
+            hasError={props.hasError}
           />
         </div>
         <div className="w-2/5 ml-6">
-          <CustomPopover currency={props.currency} balance={props.balance} symbol={props.symbol}>
+          <CustomPopover currency={props.currency} balance={props.balance}>
             {props.popoverContent}
           </CustomPopover>
         </div>
       </div>
       <>
-        <h6 className="text-gray-500 text-sm inline-flex items-center">
-          {props.children}
-        </h6>
+        {props.children}
       </>
     </div>
   );
