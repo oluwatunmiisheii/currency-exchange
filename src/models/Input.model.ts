@@ -9,8 +9,7 @@ export interface IInput {
   errorMessage?: string,
   required?: boolean,
   hasError?: boolean,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  onAmountChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   value: string | number,
-  onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void,
   pattern?: string,
 }
