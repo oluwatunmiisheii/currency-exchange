@@ -13,7 +13,12 @@ interface IErrors {
 
 const CurrencyConverter: React.FC = () => {
   // Queries
-  const { data } = useQuery('fetchRates', CurrencyExchangeService.getLatestRates);
+  const { data } = useQuery('fetchRates', CurrencyExchangeService.getLatestRates, {
+    retry: 3, // Will retry failed requests 3 times before displaying an error
+    // refetchInterval: 10000, // fetch current rate every ten seconds
+    refetchIntervalInBackground: false, //stop refetching when the user navigates away from the page
+    refetchOnWindowFocus: true, 
+  });
 
   // State
   const [errors, setErrors] = useState<IErrors>({ currencyToExchangeTo: null, currencyToExchangeFrom: null });
