@@ -1,13 +1,13 @@
 import { Currencies } from '../enums/Currencies.enum';
 import Axios from '../plugins/Axios.plugin';
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 
 const requiredCurrencies = Object.values(Currencies);
 
 interface ILatestRates {
   base: string;
   timestamp: number;
-  rates: [string, number][];
+  rates: {[key: string]:  number};
 }
 
 class CurrencyExchangeService {
