@@ -1,0 +1,21 @@
+.revolute-input {
+  @apply block w-full pl-0 bg-transparent border-0 pt-0 border-b border-transparent;
+  @apply focus:border-blue-600 focus:ring-0 text-2xl font-medium text-gray-800;
+  @apply placeholder-gray-600 focus:placeholder-gray-400 transition duration-150 ease-in-out pb-0;
+}
+
+.revolute-input__label {
+  @apply block text-sm text-gray-500 mb-3;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input.revolute-input::-webkit-outer-spin-button,
+input.revolute-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.revolute-input[type=number] {
+  -moz-appearance: textfield;
+}
