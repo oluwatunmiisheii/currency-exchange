@@ -23,6 +23,7 @@ const Input: React.FC<IInput> = (props) => {
           onChange={props.onAmountChange}
           pattern={props.pattern}
           value={props.value}
+          data-testid='test-input'
         />
         {props.hasError && (
           <div className='absolute'>
