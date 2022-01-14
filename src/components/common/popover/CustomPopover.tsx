@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover'
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { formatCurrency } from '../../../util/FormatCurrency';
-interface IProps {
+export interface IProps {
   children: React.ReactElement;
   currency: string;
   balance: number;
@@ -16,14 +16,19 @@ const CustomPopover: React.FC<IProps> = (props) => {
       isOpen={isPopoverOpen}
       positions={['bottom', 'top', 'left', 'right']} // preferred positions by priority
       onClickOutside={() => setIsPopoverOpen(false)}
-      content={props.children}
+      content={() => (
+        <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+          {props.children}
+        </div>
+      )}
     >
       <button 
         className='inline-flex justify-between w-full border-0 text-left border-b border-gray-300 px-4 py-2 text-sm text-gray-700 focus:outline-none' 
         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+        data-testid='toggle-popover'
       > 
         <div>
-          <div className="font-bold text-lg">
+          <div className="font-bold text-lg" data-testid="">
             {props.currency}
           </div>
           <div className="text-gray-500">  
