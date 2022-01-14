@@ -7,7 +7,7 @@ const currencies = [
 ]
 
 interface IProps {
-  rates: { [key: string]: number } | undefined,
+  rates?: { [key: string]: number },
   onCurrencyChange: (currency: any) => void,
 }
 
@@ -19,10 +19,9 @@ const CurrencyList: React.FC<IProps> = (props) => {
           <li 
             key={index} 
             className="cursor-pointer"
+            data-testid="select-currency"
             onClick={(e) => {
-              e.preventDefault();
-              console.log('currency', item)
-              props.onCurrencyChange(Object.keys(item)[0])
+              props.onCurrencyChange(Object.keys(item)[0]);
             }}
           >
             <div className="relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50">
