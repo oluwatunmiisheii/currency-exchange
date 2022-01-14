@@ -3,7 +3,7 @@ import Input from '../common/input/Input';
 import { IInput } from '../../models/Input.model';
 import CustomPopover from '../common/popover/CustomPopover';
 
-interface PanelProps extends IInput {
+export interface IPanelProps extends IInput {
   children?: React.ReactNode;
   popoverContent: React.ReactElement,
   currency: string,
@@ -11,7 +11,7 @@ interface PanelProps extends IInput {
   errorMessage?: string,
 }
 
-const Panel: React.FC<PanelProps> = (props) => {
+const Panel: React.FC<IPanelProps> = (props) => {
   return (
     <div>
       <div className="flex items-end">
@@ -31,7 +31,10 @@ const Panel: React.FC<PanelProps> = (props) => {
           />
         </div>
         <div className="w-2/5 ml-6">
-          <CustomPopover currency={props.currency} balance={props.balance}>
+          <CustomPopover 
+            currency={props.currency} 
+            balance={props.balance} 
+          >
             {props.popoverContent}
           </CustomPopover>
         </div>

@@ -13,7 +13,12 @@ interface IErrors {
 
 const CurrencyConverter: React.FC = () => {
   // Queries
-  const { data } = useQuery('fetchRates', CurrencyExchangeService.getLatestRates);
+  const { data, isLoading } = useQuery('fetchRates', CurrencyExchangeService.getLatestRates, {
+    retry: 3, // Will retry failed requests 3 times before displaying an error
+    refetchInterval: 10000, // fetch current rate every 10 seconds
+    refetchIntervalInBackground: false, //stop refetching when the user navigates away from the page
+    refetchOnWindowFocus: false,
+  });
 
   // State
   const [errors, setErrors] = useState<IErrors>({ currencyToExchangeTo: null, currencyToExchangeFrom: null });
@@ -71,10 +76,10 @@ const CurrencyConverter: React.FC = () => {
   const handleAmountOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-    if (validateValue(value)) {
+    if(validateValue(value)) {
       setAmountOne(value);
 
-      if (actionType === 'sell') {
+      if(actionType === 'sell') {
         setErrors({ ...errors, 'currencyToExchangeTo': null })
         handleError(value, currencyOneBalance, 'currencyToExchangeFrom')
       }
@@ -177,6 +182,10 @@ const CurrencyConverter: React.FC = () => {
   */
   const calculateExchangeRateHandler: any = useMemo(calculateExchangeRate, [data, currencyOne, currencyTwo])
 
+  if (isLoading) {
+    return <div></div>;
+  }
+
   return (
     <>
       <h1 className="sr-only">Revolute Currency Exchange</h1>
@@ -185,12 +194,18 @@ const CurrencyConverter: React.FC = () => {
         {/* currency to convert */}
         <div className="p-12 rounded-l-md relative overflow-hidden">
           <div className="pb-7">
-            <h2 className="text-gray-700 text-xl font-bold capitalize">{actionType} {currencyOne}</h2>
+            <h2 
+              className="text-gray-700 text-xl font-bold capitalize" 
+              data-testid="action-type"
+            >
+              {actionType} {currencyOne}
+            </h2>
             <span className="text-gray-500 text-sm inline-flex items-center">
               1{currencyOne} = {calculateExchangeRateHandler} {currencyTwo}
             </span>
           </div>
 
+          {/* currency to convert from */}
           <Panel
             hasLabel={true}
             label="You Have"
@@ -219,7 +234,7 @@ const CurrencyConverter: React.FC = () => {
             hasLabel
             label="You Get"
             inputId="currencyToExchangeTo"
-            type="number"
+            type="text"
             name="currencyToExchangeTo"
             placeholder="0.00"
             value={amountTwo}
@@ -229,7 +244,9 @@ const CurrencyConverter: React.FC = () => {
             popoverContent={
               <CurrencyList
                 rates={data?.rates}
-                onCurrencyChange={(currency) => handleCurrencyTwoChange(currency)}
+                onCurrencyChange={(currency) => {
+                  handleCurrencyTwoChange(currency);
+                }}
               />
             }
             balance={currencyTwoBalance}
@@ -248,6 +265,7 @@ const CurrencyConverter: React.FC = () => {
                 type="button"
                 disabled={handleButtonDisable()}
                 className="revolute-btn"
+                data-testid="exchange-btn"
               >
                 {actionType === 'sell' ? (
                   <span>Sell {currencyOne} for {currencyTwo}</span>
@@ -263,6 +281,7 @@ const CurrencyConverter: React.FC = () => {
         {/* switch button */}
         <button
           onClick={changeActionType}
+          data-testid="switch-button"
           className="bg-gray-900 h-10 w-10 rounded-full absolute flex items-center justify-center top-[46%] right-[50%]"
         >
           {actionType === 'sell' ? (

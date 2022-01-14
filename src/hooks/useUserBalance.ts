@@ -35,7 +35,6 @@ export default function useUserBalance(args: IUserBalance) {
     let balance;
     balance = userAccounts.find(b => b.currency === args.currency)?.balance ?? 0;
     setUserBalance(balance);
-    console.log('running')
     args.cb(args.amount, balance, args.scope);
   }
 

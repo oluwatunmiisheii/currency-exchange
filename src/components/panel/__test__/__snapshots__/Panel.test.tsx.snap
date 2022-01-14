@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel Should update input field when onAmountChange prop is Called 1`] = `
+<div>
+  <div>
+    <div
+      class="flex items-end"
+    >
+      <div
+        class="w-3/5"
+      >
+        <div
+          class="mt-1 border-b border-gray-300 focus-within:border-indigo-600 relative"
+        >
+          <input
+            class="revolute-input"
+            data-testid="test-input"
+            id="test-input"
+            name="test-name"
+            placeholder="test-placeholder"
+            type="text"
+            value="test-value"
+          />
+        </div>
+      </div>
+      <div
+        class="w-2/5 ml-6"
+      >
+        <button
+          class="inline-flex justify-between w-full border-0 text-left border-b border-gray-300 px-4 py-2 text-sm text-gray-700 focus:outline-none"
+          data-testid="toggle-popover"
+        >
+          <div>
+            <div
+              class="font-bold text-lg"
+              data-testid=""
+            >
+              EUR
+            </div>
+            <div
+              class="text-gray-500"
+            >
+              Balance: 
+              €0.00
+            </div>
+          </div>
+          <svg
+            aria-hidden="true"
+            class="h-5 w-5 text-gray-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div>
+      test-children
+    </div>
+  </div>
+</div>
+`;
